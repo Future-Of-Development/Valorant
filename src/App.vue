@@ -7,13 +7,14 @@ const _valorantService = new valorantService()
 
 let agents = ref([])
 
-async function getAgents(){
-  _valorantService.getAgent().then(response => {
+async function getAgentes() {
+  await _valorantService.getAgents().then(response => {
     let data = response.data
     data.map(item => {
       agents.value.push(item.displayName)
     })
-  })
+  }).catch(err)
+
 }
 </script>
 
@@ -21,76 +22,15 @@ async function getAgents(){
   <div>
     <RouterView />
 
-    <div class="flex justify-center items-center">
-      <button @click="getAgents()">
+    <div class="flex justify-center flex-col items-center">
+      <button
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+        @click="getAgentes()">
         Get
       </button>
       {{ agents }}
     </div>
   </div>
-  
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
-</style>
+<style scoped></style>
