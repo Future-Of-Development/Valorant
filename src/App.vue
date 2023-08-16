@@ -1,11 +1,34 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { RouterView } from 'vue-router'
+import { ref } from 'vue'
+import valorantService from './services/valorantService'
+
+const _valorantService = new valorantService()
+
+let agents = ref([])
+
+async function getAgents(){
+  _valorantService.getAgent().then(response => {
+    let data = response.data
+    data.map(item => {
+      agents.value.push(item.displayName)
+    })
+  })
+}
 </script>
 
 <template>
-  <div class="bg-slate-600"></div>
-  <RouterView />
+  <div>
+    <RouterView />
+
+    <div class="flex justify-center items-center">
+      <button @click="getAgents()">
+        Get
+      </button>
+      {{ agents }}
+    </div>
+  </div>
+  
 </template>
 
 <style scoped>
