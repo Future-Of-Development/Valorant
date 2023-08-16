@@ -1,7 +1,8 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import { ref } from 'vue'
+import { ref, onMounted} from 'vue'
 import valorantService from './services/valorantService'
+import cardAgent from './components/Valorant/cardAgent.vue';
 
 const _valorantService = new valorantService()
 
@@ -16,6 +17,10 @@ async function getAgentes() {
   }).catch(err)
 
 }
+
+onMounted(() => {
+  getAgentes()
+})
 </script>
 
 <template>
@@ -23,12 +28,7 @@ async function getAgentes() {
     <RouterView />
 
     <div class="flex justify-center flex-col items-center">
-      <button
-        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-        @click="getAgentes()">
-        Get
-      </button>
-      {{ agents }}
+      <cardAgent/>
     </div>
   </div>
 </template>
