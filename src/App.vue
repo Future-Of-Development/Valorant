@@ -26,7 +26,6 @@ onMounted(() => {
 <template>
   <div>
     <RouterView />
-
     <div class="flex justify-center flex-col items-center">
       <cardAgent/>
     </div>

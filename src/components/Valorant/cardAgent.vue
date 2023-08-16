@@ -6,7 +6,7 @@
     <div class="w-72 h-72 z-20 flex justify-center items-center">
       <img src="https://media.valorant-api.com/agents/e370fa57-4757-3604-3648-499e1f642d3f/fullportrait.png" alt="Gekko">
     </div>
-    <div class="text-white font-bold">
+    <div class="text-white font-bold font-valorant">
       Gekko
     </div>
   </div>
